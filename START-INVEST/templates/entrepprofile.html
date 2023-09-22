@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Ent Profile</title>
+    <link rel="stylesheet" href="{% static 'css\entrep_profile.css' %}">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Pathway+Extreme:wght@300&display=swap');
+        *
+        {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+      td, th{
+        width: 40%;
+        text-align: left;
+        font-size:20px;
+        margin-left:10%;
+        height: 40px;
+        vertical-align: middle;
+      }
+      .card{ 
+        width: auto;
+        border-radius: 5px; 
+        margin-left: 18%;
+        margin-right: 18%;
+        margin-top: 3%;
+
+       }
+      
+      img{
+        position: relative;
+        width:200px; 
+        height:200px; 
+        margin-left: 35%;
+        margin-top: 2%;
+      }
+    </style>
+    </head>
+    <body style="background: linear-gradient(90deg, #6897dc,#93e9a4);">
+        <ul>
+            <li><a href="{% url 'entprofile' %}">My Campaign</a></li>
+            <li><a href="{% url 'enttable' %}">Investors</a></li>
+            <li><a href="{% url 'entlogout' %}">Logout</a></li>
+        </ul>
+            <h1 style="margin-left: 33%; margin-top:1%">Campaign details</h2>
+              {% for i in entinfo %}
+                <img src="/media/{{i.logo}}">
+              {% endfor %}
+        <div class="card">
+              <table style="width: 100%;">
+                {% for i in entinfo %}
+                <tr>
+                  <th>Reg-no</th>
+                  <td>: {{i.reg_no}}</td>
+                </tr>
+                <tr>
+                  <th>Company Name</th>
+                  <td>: {{i.company_name}}</td>
+                </tr>
+                <tr>
+                  <th>Category</th>  
+                  <td>: {{i.category}}</td>
+                </tr>
+                <tr>
+                  <th>Description</th>  
+                   <td>: {{i.description}}</td>
+                 </tr>
+                 <tr>
+                  <th>Total Amount</th>  
+                   <td>: {{i.target_amt}}</td>
+                 </tr>
+                 <tr>
+                  <th>Amount collected</th>  
+                   <td>: {{i.amt_collected}}</td>
+                 </tr>
+                 {% endfor %}
+              </table>
+        </div>
+    </body>
+</html>

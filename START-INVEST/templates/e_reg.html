@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Investor Registration Form  </title>
+    <link rel="stylesheet" href="{% static 'css/e_reg.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+<body>
+  
+  <div class="container">
+    <div class="title">Registration</div>
+    {% if invalid %}
+    <div>
+      <h4 style="color: red;"><br>Invalid credentials,try again:)</h4>
+    </div>
+    {% elif valid %}
+    <div>
+      <h4 style="color: rgb(5, 158, 5);"><br>Registration Successful <a href="{% url 'invlogin' %}"> login here</a></h4>
+    </div>
+    {% endif %}
+    {% if error %}
+    <div>
+      <h4 style="color: red;"><br>{{msg}}</h4>
+    </div>
+    {% endif %}
+    <div class="content">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" name="name" value="{{details.name}}" placeholder="Enter full name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Username</span>
+            <input type="text" name="uname" value="{{details.uname}}" placeholder="Enter user name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" value="{{details.email}}" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" name="mobile" value="{{details.mobile}}" placeholder="Enter mobile number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" name="password" placeholder="Enter password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="password" name="cnfpassword" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

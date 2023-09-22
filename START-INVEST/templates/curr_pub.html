@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css\campaigns.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>Campaigns</title>
+</head>
+<body>
+    <ul>
+        <li><a href="#">Profile</a></li>
+        <li><a href="{% url 'curr_campaign' %}">Campaigns</a></li>
+        <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+        {% if loggedin %}
+        <li><a href="{% url 'invlogout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'invlogin' %}">Login</a></li>
+        {% endif %}
+    </ul>
+    <div class="header">
+        <div class="left">
+            {% if loggedin %}
+            <h2 style="color: black;">Welcome {{name}}!!</h2>
+            {% else %}
+            <h2 style="color: black;">Welcome Investor!!</h2>
+            {% endif %}
+        </div>
+        <!-- <div class="right">
+            <input type="text" id="category-search" name="search" placeholder="Search by category...">
+            <button onclick="search()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div> -->
+    </div>
+    <div class="campaigns" id="campaigns">
+        {% for cname in companies %}
+
+        <div class="campaign-box">
+            <div class="logo-box">
+                <img height="100%" width="100%" src="/media/{{cname.logo}}">
+            </div>
+            <div class="details-box1">
+                <div class="details">
+                    <label>Company name :</label>
+                    <p>{{cname.company_name}}</p>
+                </div>
+                <div class="details">
+                    <label>Category :</label>
+                    <p>{{cname.category}}</p>
+                </div>
+                <div class="details">
+                    <label>Reg no :</label>
+                    <p>{{cname.reg_no}}</p>
+                </div>
+                <div class="details">
+                    <label>Description :</label>
+                    <p>{{cname.description}}</p>
+                </div>
+            </div>
+            <div class="amount-box">
+                <h2>Fund Raising</h2>
+                <h3 id="target-amt" style="margin-top: 2%;">{{cname.target_amt}}</h3>
+                {%if cname.target_amt != cname.amt_collected %}
+                    <form action="/transfer/" method="POST">
+                        {% csrf_token %}
+                        <button class="btn" name="regno" value={{cname.reg_no}}><b>INVEST</b></button>
+                    </form>
+                {% else %}
+                    <button class="btn" name="regno"><b>COMPLETED</b></button>
+                {% endif %}
+            </div>
+            <div class="progress-box">
+                <div class="circle" id={{cname.reg_no}}>
+                    <div class="wrapper">
+                        <span class="value">0%</span>
+                    </div>
+                </div>
+                <label>amount collected</label>
+                <h4 id="amt-collected">
+                    {{cname.amt_collected}}
+                </h4>
+            </div>
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <script>
+        const campaigns = document.getElementById('campaigns')
+        for(let i=0;i<campaigns.childElementCount;i++){
+            let presentBox = campaigns.children[i];
+            let requiredAmount = parseInt(presentBox.children[2].children[1].textContent);
+            let amountCollected = parseInt(presentBox.children[3].children[2].textContent);
+            let endValue = Math.floor((amountCollected / requiredAmount) * 100);
+            let id = presentBox.children[3].children[0].id;
+            const element = document.getElementById(id);
+            //element.children[0].children[0].textContent = endValue +'%';
+            //element.style.background = `conic-gradient(rgb(0, 0, 255) ${endValue * 3.6}deg,rgb(215, 241, 244)  0deg)`;
+        
+            let startvalue = 0;
+            let progress = setInterval(()=>{
+                element.style.background = `conic-gradient(rgb(0, 0, 255) ${startvalue*3.6}deg,rgb(215, 241, 244)  0deg)`;
+                element.children[0].children[0].textContent = `${startvalue}%`;
+                if(startvalue >= endValue){
+                    clearInterval(progress);
+                }
+                startvalue += 1;
+            },5)
+        }
+        function search(){
+            var data = "{{ companies}}";
+            searchValue = document.getElementById("category-search");
+            console.log(searchValue.value);
+            companies = [];
+            for(const i of data){
+                companies.push(i);
+            }
+            console.log(companies);
+        }
+    </script>
+</body>
+
+</html>

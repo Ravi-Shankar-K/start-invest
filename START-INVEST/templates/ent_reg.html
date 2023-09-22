@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Entrepreneur Registration Form  </title>
+    <link rel="stylesheet" href="{% static 'css/ent_reg.css'%}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  
+  <div class="container">
+    <div class="title">Registration</div>
+    {% if invalid %}
+    <div>
+      <h4 style="color: red;"><br>Invalid credentials.Try again :)</h4>
+    </div>
+    {% elif valid %}
+    <div>
+      <h4 style="color: rgb(5, 158, 5);"><br>Registration Successful</h4>
+      <i style="color: rgb(74, 81, 216);">user credentials will be activated when admin approves.</i>
+    </div>
+    {% endif %} 
+    {% if error %}
+    <div>
+      <h4 style="color: red;"><br>{{name}}</h4>
+    </div>
+    {% endif %}
+    <div class="content">
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">User Name</span>
+            <input type="text" name="uname" placeholder="Enter user name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Company Name</span>
+            <input type="text" name="company_name" placeholder="Enter company name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Registration No</span>
+            <input type="text" name="reg_no" placeholder="Enter reg no" required>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" name="mobile_no" placeholder="Enter mobile number" required>
+          </div>
+          
+          <div class="input-box">
+            <span class="details">Category</span>
+          <select name="category" id="category">
+            <option value="None">----</option>
+            <option value="IT">IT</option>
+            <option value="Service">Service</option>
+            <option value="FMCG">FMCG</option>
+            <option value="Agriculture">Agri</option>
+            <option value="Finance">Finance</option>
+            <option value="E-Commerce">E-Commerce</option>
+            <option value="Education">Education</option>
+            <option value="Health">Health</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Manufacturing">Manufacturing</option>
+          </select>
+        </div>
+        <div class="input-box">
+            <span class="details">Target Amount</span>
+            <input type="text" name="target_amt" placeholder="Enter amount to be raised" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Account No</span>
+            <input type="text" name="acc_no" placeholder="Enter account no" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Acc Holder Name</span>
+            <input type="text" name="acc_holder_name" placeholder="Enter acc holder name " required>
+          </div>
+          <div class="input-box">
+            <span class="details">IFSC Code</span>
+            <input type="text" name="ifsc_code" placeholder="Enter IFSC code" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" name="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="password" name="cnfpassword" placeholder="Confirm your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Description</span>
+            <textarea name="description" id="tarea" cols="30" rows="3" placeholder="Enter The Description" maxlength="250"></textarea>
+          </div>
+          <br>
+          <div style="font-weight: 500;font-family:Arial, Helvetica, sans-serif">
+            <span style="margin-right: 20px;">Company Logo</span>
+            <input type="file" id="img" name="image" accept="image/*">
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

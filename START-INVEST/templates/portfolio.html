@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Portfolio</title>
+        <link rel="stylesheet" href="{% static 'css\inv_portfolio.css' %}">
+    </head>
+    <body>
+        <ul>
+            <li><a href="#">Profile</a></li>
+            <li><a href="{% url 'curr_campaign' %}">Campaigns</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'invlogout' %}">Logout</a></li>
+        </ul> 
+        <br><br>
+        <table >
+            <tr> 
+                <th>Company Reg_no</th>
+                <th>Company Name</th>
+                <th>Amount Invested</th>
+            </tr>
+            <var></var>
+            {% for i in investments %}
+            <tr>
+                <td>{{i.0}}</td>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

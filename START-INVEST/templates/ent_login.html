@@ -1,0 +1,40 @@
+{% load static %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css\users-login.css' %}">
+    <title>invlogin</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Entrepreneur Login</div>
+        {% if error %}
+        <div>
+            <h4 style="color: rgb(255, 0, 0);">{{name}}</h4>
+        </div>
+        {% endif %}
+        <div calss="content">
+            <form action="" method="POST">
+                {% csrf_token %} 
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Username</span>
+                        <input type="text" name="uname" placeholder="Enter your username" required>
+                 </div>
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="LOGIN">
+                </div>
+            </form>
+            <div class="signup-link"><br>Not a member?<a href="{% url 'entreg' %}"> Signup now?</a></div>
+        </div>
+
+    </div>
+</body>
+</html>

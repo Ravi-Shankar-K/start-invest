@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>Index</title>
+</head>
+<body>
+    <!-- <div class="header"> -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static 'images\si.png' %}">
+            </div>
+            <div class="menu-options">
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="{% url 'entlogin'%}">ENTREPRENEUR</a></li>
+                    <li><a href="{% url 'invlogin'%}">INVESTOR</a></li>
+                    <li><a href="">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    <!-- </div> -->
+    <div class="second">
+        <div class="second-body">
+            <div class="slogan">
+                <div class="slogan-part">
+                    <label>INVESTMENT IN IDEAS</label>
+                </div>
+                <div class="slogan-part">
+                    <label>MADE EASY</label>
+                </div>
+                <div class="btn">
+                    <h1>let's fund together</h1>
+                    <button><a href="{% url 'invlogin' %}">Let's start</a></button>
+                </div>
+            </div>
+            <div class="animation">
+                <img src="{% static 'images\investment.gif' %}" alt="investment">
+            </div> 
+        </div>
+    </div>
+    <div class="second-nxt">
+        <div class="heading">
+            <h2>DESCRIPTION</h2>
+        </div>
+        <div class="description">
+            <h3><q>START INVEST</q> is an online based equity crowdfunding platform.
+                Through this platform, startups and early-stage companies can raise capital from the public by
+                offering their securities.
+            </h3>
+            <h3>The main objective of this system is to ease the process of searching for capital by
+                delivering the campaign directly to the public through internet.</h3>
+        </div>
+    </div>
+    <div class="third">
+        <div class="heading">
+            <h2>SUCCESS STORIES</h2>
+        </div> 
+        <div class="successful-campaigns">
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images\su1.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">One of the fastest growing pharmaceutical manufacturer NoName pharmaceuticals has successfully raised $25M within 6 months.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images\su2.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images\su3.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="{% static 'images\su4.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-section-1">
+            <div class="left">
+                <ol>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">CAMPAIGNS</a></li>
+                    <li><a href="">SUCCES STORIES</a></li>
+                    <li><a href="">BIG CONTRIBUTORS</a></li>
+                    <li><a href="{% url 'aboutus' %}">ABOUT US</a></li>
+                </ol>
+            </div>
+            <div class="right">
+                <h4>CONNECT WITH US IN</h4>
+                <div class="social-media">
+                    <ul>
+                        <li><a href=""><img src="{% static 'images\facebook.avif' %}"></a></li>
+                        <li><a href=""><img src="{% static 'images\instagram.avif' %}"></a></li>
+                        <li><a href=""><img src="{% static 'images\twitter.avif' %}"></a></li>
+                        <li><a href=""><img src="{% static 'images\gmail.png' %}"></a></li>
+                    </ul>
+                </div></a>
+                <h4>social media</h4>
+            </div>
+        </div>
+        <div class="footer-section-2">
+            <hr>
+            <h5>All rights are reserved to start invest&#8482 according to copy right 2022&#169</h5>
+        </div>
+    </div>
+    <script>
+        window.addEventListener("scroll",function(){
+            let navbar = document.querySelector('.navbar');
+            navbar.classList.toggle("sticky",window.scrollY > 0);
+        })
+
+        const navHeight = document.querySelector('.navbar').offsetHeight;
+        document.documentElement.style.setProperty('--scroll-padding',navHeight+'px');
+    </script>
+</body>
+</html>
