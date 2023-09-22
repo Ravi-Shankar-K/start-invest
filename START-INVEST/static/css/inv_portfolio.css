@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Pathway+Extreme:wght@300&display=swap');
+*
+{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+/*Navbar*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Montserrat', sans-serif;
+  }
+  li {
+    float: left;
+  }
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  li a:hover:not(.active) {
+    background-color: rgb(56, 105, 204);
+  }
+  .active {
+    background-color: #04AA6D;
+  }
+/* navbar end*/
+
+table{
+ position: absolute;
+ margin-left: 10%;
+ width: 70%; 
+ border-collapse: collapse;
+ /*box-shadow: 0 2px 15px rgba(64,64,64,.7);
+ border-radius: 12px 12px 0 0; */
+}
+td , th{
+ padding: 15px 20px;
+ text-align: center;
+}
+th{
+ background-color: #1aa7ec;
+ color: #fafafa;
+ font-weight: 200;
+ text-transform: uppercase;
+
+}
+tr{
+ /* width: 100%; */
+ background-color: #fafafa;
+}
+tr:nth-child(even){
+ background-color:#eeeeee;
+}
